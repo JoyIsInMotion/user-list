@@ -1,7 +1,20 @@
+import { useEffect } from 'react'
+
+import UserService from '../services/UserService'
+
 import UserItem from './UserItem'
 
 
 const UserTable = () => {
+
+    useEffect(() => {
+        UserService.getAllUsers()
+            .then(data => {
+                console.log(data);
+
+            })
+    }, []);
+
     return (
         <>
             {/* Table component */}
