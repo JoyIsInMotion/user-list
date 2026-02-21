@@ -1,4 +1,5 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import AddEditUserModal from './AddEditUserModal'
 
 import UserService from '../services/UserService'
 
@@ -7,6 +8,7 @@ import UserItem from './UserItem'
 
 const UserTable = () => {
     const [users, setUsers] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     useEffect(() => {
         UserService.getAllUsers()
@@ -152,8 +154,8 @@ const UserTable = () => {
             </div >
 
             {/* New user button  */}
-            < button className="btn-add btn" > Add new user</button >
-
+            < button onClick={() => setIsModalOpen((prevState => !prevState))} className="btn-add btn" > Add new user</button >
+            {isModalOpen && <AddEditUserModal setIsModalOpen={setIsModalOpen} />}
         </>
     )
 }
