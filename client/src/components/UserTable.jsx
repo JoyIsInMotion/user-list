@@ -6,12 +6,12 @@ import UserItem from './UserItem'
 
 
 const UserTable = () => {
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
         UserService.getAllUsers()
             .then(data => {
-                console.log(data);
-
+                setUsers(data);
             })
     }, []);
 
@@ -146,7 +146,7 @@ const UserTable = () => {
                     </thead>
                     <tbody>
                         {/* Table row component */}
-                        <UserItem />
+                        {users.map(user => <UserItem key={user._id} user={user} />)}
                     </tbody>
                 </table>
             </div >
