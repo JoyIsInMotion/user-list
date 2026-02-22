@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+
 import AddEditUserModal from './AddEditUserModal'
 
 import UserService from '../services/UserService'
@@ -16,6 +17,16 @@ const UserTable = () => {
                 setUsers(data);
             })
     }, []);
+
+    const handleCloseAddUserModal = () => {
+        setIsModalOpen(false);
+    }
+
+    const handleAddUser = (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        console.log(Object.fromEntries(formData));
+    }
 
     return (
         <>
@@ -154,8 +165,8 @@ const UserTable = () => {
             </div >
 
             {/* New user button  */}
-            < button onClick={() => setIsModalOpen((prevState => !prevState))} className="btn-add btn" > Add new user</button >
-            {isModalOpen && <AddEditUserModal setIsModalOpen={setIsModalOpen} />}
+            < button onClick={() => setIsModalOpen(prevState => !prevState)} className="btn-add btn" > Add new user</button >
+            {isModalOpen && <AddEditUserModal onClose={handleCloseAddUserModal} onSave={handleAddUser} />}
         </>
     )
 }
