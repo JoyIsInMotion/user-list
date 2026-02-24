@@ -22,10 +22,16 @@ const UserTable = () => {
         setIsModalOpen(false);
     }
 
-    const handleAddUser = (e) => {
+    const handleAddUser = async (e) => {
         e.preventDefault();
         const formData = new FormData(e.target);
-        console.log(Object.fromEntries(formData));
+        const userData = Object.fromEntries(formData);
+
+        const newUser = await UserService.create(userData)
+
+        setUsers(prevState => [...prevState, newUser])
+        handleCloseAddUserModal()
+
     }
 
     return (
