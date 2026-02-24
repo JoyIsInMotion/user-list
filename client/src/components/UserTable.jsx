@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 
 import AddEditUserModal from './AddEditUserModal'
+import UserItem from './UserItem'
+
 
 import UserService from '../services/UserService'
 
-import UserItem from './UserItem'
 
 
 const UserTable = () => {

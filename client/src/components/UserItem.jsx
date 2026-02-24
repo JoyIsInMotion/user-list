@@ -1,9 +1,17 @@
+import UserDetails from './UserDetails'
+import { useState, useEffect } from 'react'
+
 const userItem = ({ user }) => {
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+    useEffect
     return (
 
         <tr>
             <td>
-                <img src={user.imageUrl}
+                < img src={user?.imageUrl || null}
                     alt={`${user.firstName} profile`} className="image" />
             </td>
             <td>{user.firstName}</td>
@@ -30,7 +38,7 @@ const userItem = ({ user }) => {
                         </path>
                     </svg>
                 </button>
-                <button className="btn info-btn" title="Info">
+                <button  onClick={() => setIsModalOpen(prevState => !prevState)} className="btn info-btn" title="Info">
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info"
                         className="svg-inline--fa fa-info" role="img" xmlns="http://www.w3.org/2000/svg"
                         viewBox="-150 0 512 612">
@@ -39,6 +47,7 @@ const userItem = ({ user }) => {
                         </path>
                     </svg>
                 </button>
+                {isModalOpen && <UserDetails />}
             </td>
         </tr>
 
