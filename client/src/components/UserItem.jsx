@@ -5,8 +5,14 @@ const userItem = ({ user }) => {
 
     const [isModalOpen, setIsModalOpen] = useState(false);
 
+    const onCloseModal = () => {
+        setIsModalOpen(false);
+    }
 
-    useEffect
+
+    useEffect(() => {
+        console.log(user);
+    }, [])
     return (
 
         <tr>
@@ -38,7 +44,7 @@ const userItem = ({ user }) => {
                         </path>
                     </svg>
                 </button>
-                <button  onClick={() => setIsModalOpen(prevState => !prevState)} className="btn info-btn" title="Info">
+                <button onClick={() => setIsModalOpen(prevState => !prevState)} className="btn info-btn" title="Info">
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info"
                         className="svg-inline--fa fa-info" role="img" xmlns="http://www.w3.org/2000/svg"
                         viewBox="-150 0 512 612">
@@ -47,7 +53,7 @@ const userItem = ({ user }) => {
                         </path>
                     </svg>
                 </button>
-                {isModalOpen && <UserDetails />}
+                {isModalOpen && <UserDetails onClose={onCloseModal} />}
             </td>
         </tr>
 
