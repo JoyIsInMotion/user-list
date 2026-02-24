@@ -705,6 +705,7 @@ ul {
 }
 .user-details p {
   margin-bottom: 10px;
+  color: #000;
 }
 .user-details p:last-of-type {
   margin-bottom: 0px;
