@@ -1,18 +1,16 @@
 import UserDetails from './UserDetails'
-import { useState, useEffect } from 'react'
+import UserDelete from './UserDelete';
+import { useState } from 'react'
 
 const userItem = ({ user }) => {
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [activeModal, setActiveModal] = useState(null);
 
     const onCloseModal = () => {
-        setIsModalOpen(false);
+        setActiveModal(null);
     }
 
 
-    useEffect(() => {
-        console.log(user);
-    }, [])
     return (
 
         <tr>
@@ -36,7 +34,7 @@ const userItem = ({ user }) => {
                         </path>
                     </svg>
                 </button>
-                <button className="btn delete-btn" title="Delete">
+                   <button onClick={() => setActiveModal('delete')}className="btn delete-btn" title="Delete">
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash"
                         className="svg-inline--fa fa-trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 498 512">
                         <path fill="currentColor"
@@ -44,7 +42,8 @@ const userItem = ({ user }) => {
                         </path>
                     </svg>
                 </button>
-                <button onClick={() => setIsModalOpen(prevState => !prevState)} className="btn info-btn" title="Info">
+                {activeModal === 'delete' && <UserDelete userId={user._id} onClose={onCloseModal} />}
+                <button onClick={() => setActiveModal('info')} className="btn info-btn" title="Info">
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info"
                         className="svg-inline--fa fa-info" role="img" xmlns="http://www.w3.org/2000/svg"
                         viewBox="-150 0 512 612">
@@ -53,7 +52,7 @@ const userItem = ({ user }) => {
                         </path>
                     </svg>
                 </button>
-                {isModalOpen && <UserDetails user={user} onClose={onCloseModal} />}
+                {activeModal === 'info' && <UserDetails user={user} onClose={onCloseModal} />}
             </td>
         </tr>
 
