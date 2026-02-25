@@ -23,11 +23,11 @@ const UserDetails = ({ user, onClose }) => {
                         </header>
                         <div className="content">
                             <div className="image-container">
-                                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png" alt=""
+                                <img src={user?.imageUrl || null} alt={`${user.firstName} profile`}
                                     className="image" />
                             </div>
                             <div className="user-details">
-                                <p>User Id: <strong>62bb0c0eda039e2fdccba57b</strong></p>
+                                <p>User Id: <strong>{user._id}</strong></p>
                                 <p>
                                     Full Name:
                                     <strong> {user.firstName} {user.lastName} </strong>
