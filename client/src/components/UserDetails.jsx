@@ -1,4 +1,4 @@
-const UserDetails = ({ onClose }) => {
+const UserDetails = ({ user, onClose }) => {
 
 
 
@@ -30,17 +30,17 @@ const UserDetails = ({ onClose }) => {
                                 <p>User Id: <strong>62bb0c0eda039e2fdccba57b</strong></p>
                                 <p>
                                     Full Name:
-                                    <strong> Peter Johnson </strong>
+                                    <strong> {user.firstName} {user.lastName} </strong>
                                 </p>
-                                <p>Email: <strong>peter@abv.bg</strong></p>
-                                <p>Phone Number: <strong>0812345678</strong></p>
+                                <p>Email: <strong>{user.email}</strong></p>
+                                <p>Phone Number: <strong>{user.phoneNumber}</strong></p>
                                 <p>
                                     Address:
-                                    <strong> Bulgaria, Sofia, Aleksandar Malinov 78 </strong>
+                                    <strong>{user.address?.country}, {user.address?.city}, {user.address?.street} </strong>
                                 </p>
 
-                                <p>Created on: <strong>Wednesday, June 28, 2022</strong></p>
-                                <p>Modified on: <strong>Thursday, June 29, 2022</strong></p>
+                                <p>Created on: <strong>{user.createdAt}</strong></p>
+                                <p>Modified on: <strong>{user.updatedAt}</strong></p>
                             </div>
                         </div>
                     </div>

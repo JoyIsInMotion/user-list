@@ -53,7 +53,7 @@ const userItem = ({ user }) => {
                         </path>
                     </svg>
                 </button>
-                {isModalOpen && <UserDetails onClose={onCloseModal} />}
+                {isModalOpen && <UserDetails user={user} onClose={onCloseModal} />}
             </td>
         </tr>
 
