@@ -2,13 +2,15 @@ import UserDetails from './UserDetails'
 import UserDelete from './UserDelete';
 import { useState } from 'react'
 
-const userItem = ({ user }) => {
+const userItem = ({ user, onDelete }) => {
 
     const [activeModal, setActiveModal] = useState(null);
 
     const onCloseModal = () => {
         setActiveModal(null);
     }
+
+
 
 
     return (
@@ -42,7 +44,7 @@ const userItem = ({ user }) => {
                         </path>
                     </svg>
                 </button>
-                {activeModal === 'delete' && <UserDelete userId={user._id} onClose={onCloseModal} />}
+                {activeModal === 'delete' && <UserDelete userId={user._id} onClose={onCloseModal} onDelete={onDelete} />}
                 <button onClick={() => setActiveModal('info')} className="btn info-btn" title="Info">
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info"
                         className="svg-inline--fa fa-info" role="img" xmlns="http://www.w3.org/2000/svg"

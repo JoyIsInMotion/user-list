@@ -35,6 +35,15 @@ const UserTable = () => {
 
     }
 
+    const handleDeleteUser = async (userId) => {
+       await UserService.delete(userId);
+    setUsers(prevUsers => 
+        prevUsers.filter(user => user._id !== userId)
+    );
+       
+
+    }
+
     return (
         <>
             {/* Table component */}
@@ -166,7 +175,7 @@ const UserTable = () => {
                     </thead>
                     <tbody>
                         {/* Table row component */}
-                        {users.map(user => <UserItem key={user._id} user={user} />)}
+                        {users.map(user => <UserItem key={user._id} user={user} onDelete={handleDeleteUser} />)}
                     </tbody>
                 </table>
             </div >

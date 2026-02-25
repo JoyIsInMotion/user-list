@@ -25,7 +25,19 @@ export default {
         });
         const data = await response.json();
         console.log(data);
-        
+
+        return data;
+    },
+    async delete(userId) {
+        const response = await fetch(`${baseUrl}/${userId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+        const data = await response.json();
+
+
         return data;
     }
 }

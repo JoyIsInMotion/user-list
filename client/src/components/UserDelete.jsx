@@ -1,12 +1,13 @@
-const UserDelete = ({ userId, onClose }) => {
+const UserDelete = ({ userId, onDelete, onClose}) => {
 
+    
     
     return (
         <>
 
             {/* Delete user component  */}
             <div className="overlay">
-                <div className="backdrop"></div>
+                <div className="backdrop" onClick={onClose}></div>
                 <div className="modal">
                     <div className="confirm-container">
                         <header className="headers">
@@ -22,8 +23,8 @@ const UserDelete = ({ userId, onClose }) => {
                         </header>
                         <div className="actions">
                             <div id="form-actions">
-                                <button id="action-save" className="btn" type="submit">Delete</button>
-                                <button id="action-cancel" className="btn" type="button">
+                                <button id="action-save" className="btn" type="submit" onClick={() => onDelete(userId)}>Delete</button>
+                                <button id="action-cancel" className="btn" type="button" onClick={onClose}>
                                     Cancel
                                 </button>
                             </div>
