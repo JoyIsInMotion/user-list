@@ -39,5 +39,19 @@ export default {
 
 
         return data;
+    },
+
+    async update(userId, updatedData) {
+        
+        const response = await fetch(`${baseUrl}/${userId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedData)
+        });
+        
+        console.log(updatedData);
+        return { ...updatedData, _id: userId };
     }
 }

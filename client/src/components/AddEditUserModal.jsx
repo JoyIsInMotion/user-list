@@ -67,14 +67,14 @@ const AddEditUserModal = ({ onClose, onSave, user }) => {
                   <label htmlFor="country">Country</label>
                   <div className="input-wrapper">
                     <span><i className="fa-solid fa-map"></i></span>
-                    <input id="country" name="country" type="text" defaultValue={user?.address.country || ""}/>
+                    <input id="country" name="country" type="text" defaultValue={user?.address?.country || ""}/>
                   </div>
                 </div>
                 <div className="form-group">
                   <label htmlFor="city">City</label>
                   <div className="input-wrapper">
                     <span><i className="fa-solid fa-city"></i></span>
-                    <input id="city" name="city" type="text" defaultValue={user?.address.city || ""}/>
+                    <input id="city" name="city" type="text" defaultValue={user?.address?.city || ""}/>
                   </div>
                 </div>
               </div>
@@ -84,14 +84,14 @@ const AddEditUserModal = ({ onClose, onSave, user }) => {
                   <label htmlFor="street">Street</label>
                   <div className="input-wrapper">
                     <span><i className="fa-solid fa-map"></i></span>
-                    <input id="street" name="street" type="text" defaultValue={user?.address.street || ""} />
+                    <input id="street" name="street" type="text" defaultValue={user?.address?.street || ""} />
                   </div>
                 </div>
                 <div className="form-group">
                   <label htmlFor="streetNumber">Street number</label>
                   <div className="input-wrapper">
                     <span><i className="fa-solid fa-house-chimney"></i></span>
-                    <input id="streetNumber" name="streetNumber" type="text" defaultValue={user?.address.streetNumber || ""} />
+                    <input id="streetNumber" name="streetNumber" type="text" defaultValue={user?.address?.streetNumber || ""} />
                   </div>
                 </div>
               </div>

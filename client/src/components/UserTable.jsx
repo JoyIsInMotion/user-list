@@ -46,11 +46,28 @@ const UserTable = () => {
 
     }
 
-    const handleEditUser = (user) => {
+    const handleEditClick = (user) => {
         setSelectedUser(user);
-       setIsModalOpen(true);
+        setIsModalOpen(true);
 
     }
+    const handleUpdateUser = async (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const updatedData = Object.fromEntries(formData);
+
+        const updatedUser = await UserService.update(selectedUser._id, updatedData);
+
+        setUsers(prev =>
+            prev.map(u =>
+                u._id === selectedUser._id ? updatedUser : u
+            )
+        );
+
+        setSelectedUser(null);
+        setIsModalOpen(false);
+    };
 
     return (
         <>
@@ -188,7 +205,7 @@ const UserTable = () => {
                                 key={user._id}
                                 user={user}
                                 onDelete={handleDeleteUser}
-                                onEdit={handleEditUser}
+                                onEdit={handleEditClick}
                             />)}
                     </tbody>
                 </table>
@@ -196,7 +213,7 @@ const UserTable = () => {
 
             {/* New user button  */}
             < button onClick={() => setIsModalOpen(prevState => !prevState)} className="btn-add btn" > Add new user</button >
-            {isModalOpen && <AddEditUserModal onClose={handleCloseAddUserModal} onSave={selectedUser ? handleEditUser : handleAddUser} user={selectedUser} />}
+            {isModalOpen && <AddEditUserModal onClose={handleCloseAddUserModal} onSave={selectedUser ? handleUpdateUser : handleAddUser} user={selectedUser} />}
         </>
     )
 }

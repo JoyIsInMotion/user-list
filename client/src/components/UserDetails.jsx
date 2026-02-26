@@ -36,7 +36,7 @@ const UserDetails = ({ user, onClose }) => {
                                 <p>Phone Number: <strong>{user.phoneNumber}</strong></p>
                                 <p>
                                     Address:
-                                    <strong>{user.address?.country}, {user.address?.city}, {user.address?.street} </strong>
+                                    <strong>{user?.address?.country}, {user.address?.city}, {user.address?.street} </strong>
                                 </p>
 
                                 <p>Created on: <strong>{user.createdAt}</strong></p>
