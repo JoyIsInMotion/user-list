@@ -11,6 +11,7 @@ import UserService from '../services/UserService'
 const UserTable = () => {
     const [users, setUsers] = useState([]);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedUser, setSelectedUser] = useState(null);
 
     useEffect(() => {
         UserService.getAllUsers()
@@ -22,6 +23,8 @@ const UserTable = () => {
     const handleCloseAddUserModal = () => {
         setIsModalOpen(false);
     }
+
+
 
     const handleAddUser = async (e) => {
         e.preventDefault();
@@ -36,11 +39,16 @@ const UserTable = () => {
     }
 
     const handleDeleteUser = async (userId) => {
-       await UserService.delete(userId);
-    setUsers(prevUsers => 
-        prevUsers.filter(user => user._id !== userId)
-    );
-       
+        await UserService.delete(userId);
+        setUsers(prevUsers =>
+            prevUsers.filter(user => user._id !== userId)
+        );
+
+    }
+
+    const handleEditUser = (user) => {
+        setSelectedUser(user);
+       setIsModalOpen(true);
 
     }
 
@@ -175,14 +183,20 @@ const UserTable = () => {
                     </thead>
                     <tbody>
                         {/* Table row component */}
-                        {users.map(user => <UserItem key={user._id} user={user} onDelete={handleDeleteUser} />)}
+                        {users.map(user =>
+                            <UserItem
+                                key={user._id}
+                                user={user}
+                                onDelete={handleDeleteUser}
+                                onEdit={handleEditUser}
+                            />)}
                     </tbody>
                 </table>
             </div >
 
             {/* New user button  */}
             < button onClick={() => setIsModalOpen(prevState => !prevState)} className="btn-add btn" > Add new user</button >
-            {isModalOpen && <AddEditUserModal onClose={handleCloseAddUserModal} onSave={handleAddUser} />}
+            {isModalOpen && <AddEditUserModal onClose={handleCloseAddUserModal} onSave={selectedUser ? handleEditUser : handleAddUser} user={selectedUser} />}
         </>
     )
 }

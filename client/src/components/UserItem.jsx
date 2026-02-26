@@ -2,15 +2,13 @@ import UserDetails from './UserDetails'
 import UserDelete from './UserDelete';
 import { useState } from 'react'
 
-const userItem = ({ user, onDelete }) => {
+const userItem = ({ user, onDelete, onEdit }) => {
 
     const [activeModal, setActiveModal] = useState(null);
 
     const onCloseModal = () => {
         setActiveModal(null);
     }
-
-
 
 
     return (
@@ -27,7 +25,7 @@ const userItem = ({ user, onDelete }) => {
             <td>{user.createdAt}</td>
 
             <td className="actions">
-                <button className="btn edit-btn" title="Edit">
+               <button onClick={() => onEdit(user)}  className="btn edit-btn" title="Edit">
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="pen-to-square"
                         className="svg-inline--fa fa-pen-to-square" role="img" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 532 512">
@@ -36,7 +34,7 @@ const userItem = ({ user, onDelete }) => {
                         </path>
                     </svg>
                 </button>
-                   <button onClick={() => setActiveModal('delete')}className="btn delete-btn" title="Delete">
+                <button onClick={() => setActiveModal('delete')} className="btn delete-btn" title="Delete">
                     <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="trash"
                         className="svg-inline--fa fa-trash" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 498 512">
                         <path fill="currentColor"
